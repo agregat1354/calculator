@@ -6,8 +6,30 @@ const equalitySign = document.querySelector('.eq');
 const clear = document.querySelector('.ac');
 const back = document.querySelector('.back');
 const dot = document.querySelector('.dot');
+const one = document.querySelector('.one');
 let currentNumber = '';
 const exprObj = {num1: null, operator: null, num2: null};
+const keyMap = {
+    48: "zero",
+    49: "one",
+    50: "two",
+    51: "three",
+    52: "four",
+    53: "five",
+    54: "six",
+    55: "seven",
+    56: "eight",
+    57: "nine",
+    67: "ac",
+    8: "back",
+    191: "div",
+    56: "mul",
+    187: "eq",
+    13: "eq",
+    189: "sub",
+    187: "add",
+    190: "dot",
+}
 
 let errorFlag = "all good";
 
@@ -233,3 +255,9 @@ function operate(num1, num2, op) {
     else if (op === '*') return multiply(num1,num2);
     else if (op === '/') return divide(num1, num2);
 }
+
+window.addEventListener('keydown', (e) => {
+    if (e.keyCode in keyMap) {
+        document.querySelector(`.${keyMap[e.keyCode]}`).click();
+    }
+})
